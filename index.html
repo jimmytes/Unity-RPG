@@ -84,6 +84,12 @@
       };
       document.body.appendChild(script);
 
+      $(document).ready(function(){
+        console.log($(window).outerWidth());
+        $("#unity-container.unity-mobile").css("left",($(window).outerWidth()-1280)/2+"px");
+        $("#unity-container.unity-mobile").css("top",($(window).outerHeight()-620)/2+"px");
+      });
+
       $(window).resize(function () {
         console.log($(window).outerWidth());
         $("#unity-container.unity-mobile").css("left",($(window).outerWidth()-1280)/2+"px");
