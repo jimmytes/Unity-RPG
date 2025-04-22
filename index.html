@@ -7,7 +7,10 @@
     <link rel="shortcut icon" href="TemplateData/favicon.ico">
     <link rel="stylesheet" href="TemplateData/style.css">
   </head>
-  
+  <style>
+    #unity-container { position: absolute; width:1280px; height:620px }
+    #unity-container.unity-mobile { transform:rotate(90deg) }
+  </style>
   <body>
     <div id="unity-container" class="unity-desktop">
       <canvas id="unity-canvas" width=1280 height=620></canvas>
@@ -23,6 +26,7 @@
       <div id="unity-footer">
       </div>
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script>
       var buildUrl = "Build";
       var loaderUrl = buildUrl + "/Unity RPG網頁版發布.loader.js";
@@ -79,29 +83,45 @@
       document.body.appendChild(script);
 
 
-      window.addEventListener('resize', adjustElementSize);
-      let screenWidth = window.innerWidth;
-      let screenHeight = window.innerHeight;
-      if(screenHeight > 620){
-        canvas.style.width = screenWidth - 10 + 'px'
-        canvas.style.height = 620 + 'px'
-      }
-      else{
-        canvas.style.width = ''
-        canvas.style.height = screenHeight - 10 + 'px'
-      }
+      // window.addEventListener('resize', adjustElementSize);
+      // let screenWidth = window.innerWidth;
+      // let screenHeight = window.innerHeight;
+      // if(screenHeight > 620){
+      //   canvas.style.width = screenWidth - 10 + 'px'
+      //   canvas.style.height = 620 + 'px'
+      // }
+      // else{
+      //   canvas.style.width = ''
+      //   canvas.style.height = screenHeight - 10 + 'px'
+      // }
   
-      function adjustElementSize() {
-        screenWidth = window.innerWidth;
-        if(screenHeight > 620){
-          canvas.style.width = screenWidth - 10 + 'px'
-          canvas.style.height = 620 + 'px'
-        }
-        else{
-          canvas.style.width = ''
-          canvas.style.height = screenHeight - 10 + 'px'
-        }
-      }
+      // function adjustElementSize() {
+      //   screenWidth = window.innerWidth;
+      //   if(screenHeight > 620){
+      //     canvas.style.width = screenWidth - 10 + 'px'
+      //     canvas.style.height = 620 + 'px'
+      //   }
+      //   else{
+      //     canvas.style.width = ''
+      //     canvas.style.height = screenHeight - 10 + 'px'
+      //   }
+      // }
+      $(document).ready(function(){
+        console.log($(window).outerWidth());
+        $("#unity-container.unity-mobile").css("left",($(window).outerWidth()-1280)/2+"px");
+        $("#unity-container.unity-mobile").css("top",($(window).outerHeight()-620)/2+"px");
+      });
+
+      $(window).resize(function () {
+        console.log($(window).outerWidth());
+        let screenWidth = window.innerWidth;
+        let screenHeight = window.innerHeight;
+        $("#unity-container.unity-mobile").css("left",($(window).outerWidth()-1280)/2+"px");
+        $("#unity-container.unity-mobile").css("top",($(window).outerHeight()-620)/2+"px");
+      });
+
+
+
     </script>
   </body>
 </html>
